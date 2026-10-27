@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Dispositivos · salida de audio" android:textAppearance="@android:style/TextAppearance.Material.Notification.Title" android:maxLines="1" />
+  <LinearLayout android:id="@+id/notification_row_1" android:layout_width="match_parent" android:layout_height="64dp" android:gravity="center_vertical" android:orientation="horizontal">
+    <ImageView android:id="@+id/notification_icon_1" android:layout_width="28dp" android:layout_height="28dp" android:layout_marginEnd="8dp" android:importantForAccessibility="no" />
+    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_vertical">
+      <TextView android:id="@+id/notification_name_1" android:layout_width="match_parent" android:layout_height="wrap_content" android:maxLines="1" android:ellipsize="end" android:textAppearance="@android:style/TextAppearance.Material.Notification" android:textSize="13sp" />
+      <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:gravity="center_vertical" android:orientation="horizontal">
+        <TextView android:id="@+id/notification_minus_1" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="−" android:textSize="24sp" android:textAppearance="@android:style/TextAppearance.Material.Notification" android:background="?android:attr/selectableItemBackground" />
+        <ProgressBar android:id="@+id/notification_volume_1" style="?android:attr/progressBarStyleHorizontal" android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1" android:progressTint="#377DAD" android:importantForAccessibility="no" />
+        <TextView android:id="@+id/notification_plus_1" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="+" android:textSize="24sp" android:textAppearance="@android:style/TextAppearance.Material.Notification" android:background="?android:attr/selectableItemBackground" />
+      </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:layout_width="80dp" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center">
+      <ImageButton android:id="@+id/notification_check_1" android:layout_width="56dp" android:layout_height="40dp" android:background="?android:attr/selectableItemBackgroundBorderless" android:scaleType="center" android:src="@drawable/ic_checkbox_unknown" />
+      <TextView android:id="@+id/notification_state_1" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:maxLines="1" android:textSize="10sp" android:textAppearance="@android:style/TextAppearance.Material.Notification" />
+    </LinearLayout>
+  </LinearLayout>
+  <LinearLayout android:id="@+id/notification_row_2" android:layout_width="match_parent" android:layout_height="64dp" android:gravity="center_vertical" android:orientation="horizontal">
+    <ImageView android:id="@+id/notification_icon_2" android:layout_width="28dp" android:layout_height="28dp" android:layout_marginEnd="8dp" android:importantForAccessibility="no" />
+    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_vertical">
+      <TextView android:id="@+id/notification_name_2" android:layout_width="match_parent" android:layout_height="wrap_content" android:maxLines="1" android:ellipsize="end" android:textAppearance="@android:style/TextAppearance.Material.Notification" android:textSize="13sp" />
+      <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:gravity="center_vertical" android:orientation="horizontal">
+        <TextView android:id="@+id/notification_minus_2" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="−" android:textSize="24sp" android:textAppearance="@android:style/TextAppearance.Material.Notification" android:background="?android:attr/selectableItemBackground" />
+        <ProgressBar android:id="@+id/notification_volume_2" style="?android:attr/progressBarStyleHorizontal" android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1" android:progressTint="#377DAD" android:importantForAccessibility="no" />
+        <TextView android:id="@+id/notification_plus_2" android:layout_width="40dp" android:layout_height="40dp" android:gravity="center" android:text="+" android:textSize="24sp" android:textAppearance="@android:style/TextAppearance.Material.Notification" android:background="?android:attr/selectableItemBackground" />
+      </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:layout_width="80dp" android:layout_height="match_parent" android:orientation="vertical" android:gravity="center">
+      <ImageButton android:id="@+id/notification_check_2" android:layout_width="56dp" android:layout_height="40dp" android:background="?android:attr/selectableItemBackgroundBorderless" android:scaleType="center" android:src="@drawable/ic_checkbox_unknown" />
+      <TextView android:id="@+id/notification_state_2" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:maxLines="1" android:textSize="10sp" android:textAppearance="@android:style/TextAppearance.Material.Notification" />
+    </LinearLayout>
+  </LinearLayout>
+  <TextView android:id="@+id/notification_hint" android:layout_width="match_parent" android:layout_height="wrap_content" android:maxLines="2" android:textAppearance="@android:style/TextAppearance.Material.Notification" android:textSize="11sp" android:paddingTop="2dp" />
+</LinearLayout>

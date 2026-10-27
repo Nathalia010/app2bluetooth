@@ -1,0 +1,95 @@
+plugins { id 'com.android.application' }
+
+// Retain the signing identity of the prototype APKs already delivered.
+def updateKey = rootProject.file('.signing/juntos.keystore')
+def installedCertificateSha256 = '2cd4789ba4e6df1b510a0db1d932e265d6f8e344d14ef9199fe81ee7d2d3651d'
+def playProperties = new Properties()
+def playConfig = rootProject.file('.signing/play-upload.properties')
+if (playConfig.isFile()) playConfig.withInputStream { playProperties.load(it) }
+def playConfigured = ['storeFile', 'storePassword', 'keyAlias', 'keyPassword'].every { playProperties.getProperty(it) }
+
+android {
+    namespace 'com.karen.juntos'
+    compileSdk 36
+    defaultConfig {
+        applicationId 'com.karen.juntos'
+        minSdk 26
+        targetSdk 36
+        versionCode 29
+        versionName '0.7.2'
+    }
+    signingConfigs {
+        if (playConfigured) {
+            release {
+                storeFile rootProject.file(playProperties.getProperty('storeFile'))
+                storePassword playProperties.getProperty('storePassword')
+                keyAlias playProperties.getProperty('keyAlias')
+                keyPassword playProperties.getProperty('keyPassword')
+            }
+        }
+        debug {
+            storeFile updateKey
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
+    buildTypes {
+        release {
+            debuggable false
+            if (playConfigured) signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildFeatures { buildConfig true }
+}
+
+def verifyUpdateSigning = tasks.register('verifyUpdateSigning') {
+    group = 'verification'
+    description = 'Checks that new APKs retain the installed prototype certificate.'
+    doLast {
+        if (!updateKey.isFile()) {
+            throw new GradleException('Falta .signing/juntos.keystore. Restaura la clave original; no generes otra para una actualización.')
+        }
+        def keyStore = java.security.KeyStore.getInstance(updateKey, 'android'.toCharArray())
+        def certificate = keyStore.getCertificate('androiddebugkey')
+        if (certificate == null) throw new GradleException('No se encontró el certificado original de la app.')
+        def fingerprint = java.security.MessageDigest.getInstance('SHA-256').digest(certificate.encoded).encodeHex().toString()
+        if (fingerprint != installedCertificateSha256) {
+            throw new GradleException('La firma cambió. Android no aceptaría este APK como actualización de los anteriores.')
+        }
+        logger.lifecycle('Firma de actualización: coincide con los APK anteriores.')
+    }
+}
+tasks.matching { it.name == 'preDebugBuild' }.configureEach { dependsOn verifyUpdateSigning }
+
+def verifyPlaySigning = tasks.register('verifyPlaySigning') {
+    group = 'verification'
+    doLast {
+        if (!playConfigured) throw new GradleException('Configura .signing/play-upload.properties antes de generar la versión de Play.')
+        def key = rootProject.file(playProperties.getProperty('storeFile'))
+        def ks = java.security.KeyStore.getInstance(key, playProperties.getProperty('storePassword').toCharArray())
+        def cert = ks.getCertificate(playProperties.getProperty('keyAlias'))
+        if (cert == null) throw new GradleException('No se encontró el certificado de carga de Google Play.')
+        cert.checkValidity()
+        def sha = java.security.MessageDigest.getInstance('SHA-256').digest(cert.encoded).encodeHex().toString()
+        if (sha == installedCertificateSha256 || cert.subjectX500Principal.name.contains('Android Debug'))
+            throw new GradleException('La versión de Play no puede usar el certificado de pruebas.')
+        logger.lifecycle('Firma de publicación: clave de carga independiente y válida.')
+    }
+}
+tasks.matching { it.name == 'preReleaseBuild' }.configureEach { dependsOn verifyPlaySigning }
+
+tasks.register('verifyPlayBundle') {
+    group = 'verification'
+    dependsOn 'bundleRelease'
+    doLast {
+        com.android.tools.build.bundletool.commands.ValidateBundleCommand.builder()
+                .setBundlePath(layout.buildDirectory.file('outputs/bundle/release/app-release.aab').get().asFile.toPath())
+                .build().execute()
+        logger.lifecycle('Android App Bundle validado con bundletool.')
+    }
+}

@@ -1,0 +1,27 @@
+POLÍTICA DE PRIVACIDAD — JUNTOS BLUETOOTH
+Actualizada el 26 de octubre de 2026. Versión móvil 0.7.0.
+
+Responsables y contacto
+Manuel Martinez y Karen Martinez.
+Soporte y privacidad: knathaliabiscunda@gmail.com.
+
+Datos que utiliza la aplicación
+Juntos consulta nombres e identificadores de equipos Bluetooth, estado de conexión, rutas de audio, volumen y batería cuando Android permite acceder a esos datos. Guarda preferencias de tema, dispositivos, niveles de volumen y apariencia de los widgets en el almacenamiento privado del teléfono.
+
+Uso y almacenamiento
+Esta información se utiliza localmente para mostrar hasta dos equipos, sus controles disponibles y los widgets. Esta versión no tiene servidor, cuentas, analítica, SDK de publicidad ni envío automático de datos a los desarrolladores o terceros. No solicita acceso a cámara, contactos ni micrófono. El sonido de prueba es un archivo incluido en la aplicación.
+
+Permisos
+Los permisos Bluetooth permiten consultar y controlar las funciones compatibles. En versiones antiguas de Android puede solicitarse ubicación para funciones Bluetooth; Juntos no calcula ni registra tu ubicación. Las notificaciones son opcionales. Al activar los controles persistentes, un servicio visible mantiene las funciones compatibles en la notificación; puedes detenerlo con «Ocultar aviso».
+
+Publicidad
+El recuadro de Publicidad es únicamente un espacio reservado. No muestra anuncios de una red publicitaria, no usa identificadores publicitarios ni hace seguimiento. Si se incorpora publicidad real, esta política y las declaraciones correspondientes deberán actualizarse antes de distribuir esa versión.
+
+Datos que decides compartir
+El informe de diagnóstico se copia al portapapeles solo cuando pulsas «Copiar informe». Contiene versión de la app, modelo del teléfono, versión de Android y contadores de capacidades, sin nombres ni direcciones Bluetooth. Tú decides si lo compartes. Si contactas por correo, los responsables reciben lo que envíes y lo usan para responder; el correo se procesa mediante el proveedor de correo utilizado. No envíes contraseñas ni datos innecesarios.
+
+Conservación y eliminación
+Los datos locales pueden actualizarse o descartarse al cambiar conexiones. Puedes eliminar todos los datos de Juntos desde Ajustes de Android → Aplicaciones → Juntos Bluetooth → Almacenamiento → Borrar datos, o desinstalando la app. Para consultar o solicitar la eliminación de información que hayas enviado por correo, escribe al contacto indicado. No hay una cuenta de usuario que debas cerrar.
+
+Cambios
+Esta política describe la versión sin anuncios activos. Los cambios en permisos, servicios o publicidad se reflejarán en una actualización de esta política.
